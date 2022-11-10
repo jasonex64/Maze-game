@@ -1,0 +1,1338 @@
+main:
+call draw_start
+
+*wait for button press
+ call draw_maze:
+
+
+victory: 
+call draw_victory
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.eqv BG_COLOR, 0xFF  # light blue (0/7 red, 3/7 green, 3/3 blue)
+.eqv VG_ADDR, 0x11100000
+.eqv VG_COLOR, 0x11140000
+.eqv LEDS,0x11080000
+.eqv SSEG, 0x110C0000
+.eqv KEY_CHAR_PORT, 0x11200000
+.eqv W, 0x1D
+.eqv A, 0x1C
+.eqv S, 0x1B
+.eqv D, 0x23
+.eqv VG_READ, 0x11040000
+.eqv Blue, 0x03
+.eqv Green, 0x1C
+.eqv ENTER, 0x5A
+
+
+main:
+ li s6, Blue
+ li s7, Green
+ li s11, VG_READ
+ li   sp, 0x10000       	#initialize stack pointer
+ #li   s0, 0             	#initialize interrupt count
+ li s2, VG_ADDR
+ li s3, VG_COLOR
+ li sp, 0x10000
+
+maze: #draw the maze
+call draw_background  # must not modify s2, s3
+li a7, S
+li a6, W
+li s4, A
+li s5, D
+li a3, 0x03
+li a0, 0
+li a1, 0
+li a2, 79
+call draw_horizontal_line
+li a0, 0
+li a1, 1
+li a2, 79
+call draw_horizontal_line
+li a0, 6
+li a1, 6
+li a2, 73
+call draw_horizontal_line
+li a0, 6
+li a1, 7
+li a2, 73
+call draw_horizontal_line
+li a0, 6
+li a1, 8
+li a2, 73
+call draw_horizontal_line
+li a0, 6
+li a1, 9
+li a2, 73
+call draw_horizontal_line
+li a0, 30
+li a1, 12
+li a2, 37
+call draw_horizontal_line
+
+li a0, 30
+li a1, 13
+li a2, 37
+call draw_horizontal_line
+li a0, 30
+li a1, 14
+li a2, 37
+call draw_horizontal_line
+li a0, 30
+li a1, 15
+li a2, 37
+call draw_horizontal_line
+li a0, 30
+li a1, 10
+li a2, 33
+call draw_horizontal_line
+li a0, 30
+li a1, 11
+li a2, 33
+call draw_horizontal_line
+li a0, 58
+li a1, 14
+li a2, 65
+call draw_horizontal_line
+
+li a0, 58
+li a1, 15
+li a2, 65
+call draw_horizontal_line
+
+li a0, 14
+li a1, 20
+li a2, 37
+call draw_horizontal_line
+
+li a0, 14
+li a1, 21
+li a2, 37
+call draw_horizontal_line
+
+li a0, 14
+li a1, 22
+li a2, 37
+call draw_horizontal_line
+
+li a0, 14
+li a1, 23
+li a2, 37
+call draw_horizontal_line
+li a0, 70
+li a1, 20
+li a2, 79
+call draw_horizontal_line
+
+li a0, 70
+li a1, 21
+li a2, 79
+call draw_horizontal_line
+li a0, 70
+li a1, 22
+li a2, 79
+call draw_horizontal_line
+li a0, 70
+li a1, 23
+li a2, 79
+call draw_horizontal_line
+li a0, 50
+li a1, 22
+li a2, 65
+call draw_horizontal_line
+li a0, 50
+li a1, 23
+li a2, 65
+call draw_horizontal_line
+li a0, 50
+li a1, 24
+li a2, 65
+call draw_horizontal_line
+li a0, 50
+li a1, 25
+li a2, 65
+call draw_horizontal_line
+
+li a0, 6
+li a1, 50
+li a2, 65
+call draw_horizontal_line
+
+
+li a0, 6
+li a1, 51
+li a2, 65
+call draw_horizontal_line
+li a0, 6
+li a1, 52
+li a2, 65
+call draw_horizontal_line
+li a0, 6
+li a1, 53
+li a2, 65
+call draw_horizontal_line
+li a0, 14
+li a1, 28
+li a2, 25
+call draw_horizontal_line
+li a0, 14
+li a1, 29
+li a2, 25
+call draw_horizontal_line
+li a0, 14
+li a1, 30
+li a2, 25
+call draw_horizontal_line
+li a0, 14
+li a1, 31
+li a2, 25
+call draw_horizontal_line
+li a0, 6
+li a1, 42
+li a2, 57
+call draw_horizontal_line
+li a0, 6
+li a1, 43
+li a2, 57
+call draw_horizontal_line
+
+li a0, 6
+li a1, 44
+li a2, 57
+call draw_horizontal_line
+li a0, 6
+li a1, 45
+li a2, 57
+call draw_horizontal_line
+
+li a0, 0
+li a1, 58
+li a2, 79
+call draw_horizontal_line
+
+li a0, 0
+li a1, 59
+li a2, 79
+call draw_horizontal_line
+
+li a0, 79
+li a1, 0
+li a2, 59
+call draw_vertical_line
+li a0, 0
+li a1, 0
+li a2, 59
+call draw_vertical_line
+li a0, 1
+li a1, 0
+li a2, 59
+call draw_vertical_line
+li a0, 6
+li a1, 6
+li a2, 36
+call draw_vertical_line
+li a0, 7
+li a1, 6
+li a2, 36
+call draw_vertical_line
+li a0, 8
+li a1, 6
+li a2, 36
+call draw_vertical_line
+li a0, 9
+li a1, 6
+li a2, 36
+call draw_vertical_line
+li a0, 6
+li a1, 42
+li a2, 52
+call draw_vertical_line
+li a0, 7
+li a1, 42
+li a2, 52
+call draw_vertical_line
+li a0, 8
+li a1, 42
+li a2, 52
+call draw_vertical_line
+li a0, 9
+li a1, 42
+li a2, 52
+call draw_vertical_line
+li a0, 14
+li a1, 14
+li a2, 36
+call draw_vertical_line
+li a0, 15
+li a1, 14
+li a2, 36
+call draw_vertical_line
+li a0, 16
+li a1, 14
+li a2, 36
+call draw_vertical_line
+li a0, 17
+li a1, 14
+li a2, 36
+call draw_vertical_line
+li a0, 22
+li a1, 6
+li a2, 14
+call draw_vertical_line
+li a0, 23
+li a1, 6
+li a2, 14
+call draw_vertical_line
+li a0, 24
+li a1, 6
+li a2, 14
+call draw_vertical_line
+li a0, 25
+li a1, 6
+li a2, 14
+call draw_vertical_line
+li a0, 22
+li a1, 36
+li a2, 44
+call draw_vertical_line
+li a0, 23
+li a1, 36
+li a2, 44
+call draw_vertical_line
+li a0, 24
+li a1, 36
+li a2, 44
+call draw_vertical_line
+li a0, 25
+li a1, 36
+li a2, 44
+call draw_vertical_line
+li a0, 30
+li a1, 6
+li a2, 14
+call draw_vertical_line
+li a0, 31
+li a1, 6
+li a2, 14
+call draw_vertical_line
+li a0, 32
+li a1, 6
+li a2, 14
+call draw_vertical_line
+li a0, 33
+li a1, 6
+li a2, 14
+call draw_vertical_line
+li a0, 30
+li a1, 28
+li a2, 36
+call draw_vertical_line
+li a0, 31
+li a1, 28
+li a2, 36
+call draw_vertical_line
+
+li a0, 32
+li a1, 28
+li a2, 36
+call draw_vertical_line
+li a0, 33
+li a1, 28
+li a2, 36
+call draw_vertical_line
+
+li a0, 38
+li a1, 50
+li a2, 58
+call draw_vertical_line
+li a0, 39
+li a1, 50
+li a2, 58
+call draw_vertical_line
+li a0, 40
+li a1, 50
+li a2, 58
+call draw_vertical_line
+li a0, 41
+li a1, 50
+li a2, 58
+call draw_vertical_line
+li a0, 42
+li a1, 6
+li a2, 36
+call draw_vertical_line
+li a0, 43
+li a1, 6
+li a2, 36
+call draw_vertical_line
+li a0, 44
+li a1, 6
+li a2, 36
+call draw_vertical_line
+li a0, 45
+li a1, 6
+li a2, 36
+call draw_vertical_line
+li a0, 50
+li a1, 6
+li a2, 16
+call draw_vertical_line
+li a0, 51
+li a1, 6
+li a2, 16
+call draw_vertical_line
+li a0, 52
+li a1, 6
+li a2, 16
+call draw_vertical_line
+li a0, 53
+li a1, 6
+li a2, 16
+call draw_vertical_line
+li a0, 50
+li a1, 30
+li a2, 44
+call draw_vertical_line
+li a0, 51
+li a1, 30
+li a2, 44
+call draw_vertical_line
+li a0, 52
+li a1, 30
+li a2, 44
+call draw_vertical_line
+li a0, 53
+li a1, 30
+li a2, 44
+call draw_vertical_line
+li a0, 62
+li a1, 14
+li a2, 52
+call draw_vertical_line
+li a0, 63
+li a1, 14
+li a2, 52
+call draw_vertical_line
+li a0, 64
+li a1, 14
+li a2, 52
+call draw_vertical_line
+li a0, 65
+li a1, 14
+li a2, 52
+call draw_vertical_line
+li a0, 70
+li a1, 6
+li a2, 32
+call draw_vertical_line
+li a0, 71
+li a1, 6
+li a2, 32
+call draw_vertical_line
+li a0, 72
+li a1, 6
+li a2, 32
+call draw_vertical_line
+li a0, 73
+li a1, 6
+li a2, 32
+call draw_vertical_line
+li a0, 70
+li a1, 38
+li a2, 58
+call draw_vertical_line
+li a0, 71
+li a1, 38
+li a2, 58
+call draw_vertical_line
+li a0, 72
+li a1, 38
+li a2, 58
+call draw_vertical_line
+li a0, 73
+li a1, 38
+li a2, 58
+call draw_vertical_line
+li a0, 78
+li a1, 0
+li a2, 58
+call draw_vertical_line
+li a0, 79
+li a1, 0
+li a2, 58
+call draw_vertical_line
+
+li a0, 6
+li a1, 34
+li a2, 17
+call draw_horizontal_line
+li a0, 6
+li a1, 35
+li a2, 17
+call draw_horizontal_line
+li a0, 6
+li a1, 36
+li a2, 17
+call draw_horizontal_line
+li a0, 6
+li a1, 37
+li a2, 17
+call draw_horizontal_line
+li a0, 26
+li a1, 28
+li a2, 37
+call draw_horizontal_line
+li a0, 26
+li a1, 29
+li a2, 37
+call draw_horizontal_line
+li a0, 26
+li a1, 30
+li a2, 37
+call draw_horizontal_line
+li a0, 26
+li a1, 31
+li a2, 37
+call draw_horizontal_line
+
+li a0, 58
+li a1, 14
+li a2, 65
+call draw_horizontal_line
+li a0, 58
+li a1, 15
+li a2, 65
+call draw_horizontal_line
+li a0, 58
+li a1, 16
+li a2, 65
+call draw_horizontal_line
+li a0, 58
+li a1, 17
+li a2, 65
+call draw_horizontal_line
+li a0, 58
+li a1, 30
+li a2, 65
+call draw_horizontal_line
+li a0, 58
+li a1, 31
+li a2, 65
+call draw_horizontal_line
+li a0, 58
+li a1, 32
+li a2, 65
+call draw_horizontal_line
+li a0, 58
+li a1, 33
+li a2, 65
+call draw_horizontal_line
+
+li a3, 0xE0
+li a0, 2
+li a1, 2
+call draw_square
+li a3, 0x1C
+li a0, 77
+li a1, 58
+call draw_square
+li s8, 2
+li s9, 2
+j end
+
+#keyboard
+
+ li   a5, 0             	#initialize interrupt flag
+ li   s1, KEY_CHAR_PORT 	#load MMIO addresses
+ 
+ # register the interrupt handler
+ la	a4, ISR
+ csrrw x0, mtvec, a4
+ 
+ loopcursor:
+ call move_cursor
+ # enable interrupts
+ li	a4, 1
+ csrrw x0, mie, a4
+ j loopcursor
+# Interrupt Service Routine for keyboard
+ISR:
+ #echo code (scancodes) of key pressed on the keyboard to the SSEG
+ lw a4, 0(s1)
+ 
+ #increment binary number displayed on LEDs for tracking number
+ #of interrupts/key presses
+ #addi s0, s0,1
+ #sw   s0, 0(s11)
+ 
+# li a5, 1	#set the interrupt flag
+ mret
+
+move_cursor:
+addi sp,sp,-4
+sw ra, 0(sp)
+ li a4, 0
+LOOP:
+   
+ beq a4, a6, move_up
+ beq a4, a7, move_down
+ beq a4, s4, move_left
+ beq a4, s5, move_right
+ 
+     	li	a4, 1     	#re-enable interrupts
+     	csrrw x0, mie, a4
+ j LOOP
+
+#modifies (directly or indirectly): t0, t1
+#reads one dot’s color
+read_dot:
+addi sp,sp,-4
+sw ra, 0(sp)
+andi t0, a0, 0x7F
+andi t1, a1, 0x3F
+slli t1, t1, 7
+or t0, t1, t0
+sw t0, 0(s2)
+lw t5, 0(s11)
+lw ra, 0(sp)
+addi sp,sp,4
+Ret
+
+#moves the square up if check is valid
+move_up:
+li a3, 0xFF
+addi a0, s8, 0
+addi a1, s9, 0
+call draw_square
+check_up1:
+addi s9, s9, -1 #change stack pointer (upper left)
+addi a0, s8, 0
+addi a1, s9, 0
+call read_dot
+addi s9, s9, 1 #reset the global pointer after reading the dot upper left
+#beq s7, t5, draw_victory #jumps to victory if it is green
+beq s6, t5, draw #draws if the wall is blue
+check_up2:
+addi s9, s9, -1 #change stack pointer (upper right)
+addi s8, s8, 1
+addi a0, s8, 0
+addi a1, s9, 0
+call read_dot
+addi s9, s9, 1 #reset the global pointer after reading the dot upper right
+addi s8, s8, -1
+addi a0, s8, 0
+addi a1, s9, 0
+#beq s7, t5, draw_victory  #jumps to victory if it is green
+beq s6, t5, draw #draws in place if wall is blue
+addi s9, s9, -1
+draw:
+addi a1, s9, 0
+addi a0, s8, 0
+li a3, 0xE0
+call draw_square
+j end
+
+#moves the square left if the check is valid
+move_left:
+addi a0, s8, 0
+addi a1, s9, 0
+li a3, 0xFF
+call draw_square
+check_left1:
+addi s8, s8, -1 #read left 1
+addi a0, s8, 0
+addi a1, s9, 0
+call read_dot
+addi s8, s8, 1 #reset global tracker
+addi a0, s8, 0
+addi a1, s9, 0
+#beq s7, t5, draw_victory
+beq s6, t5, draw1
+check_left2:
+addi s8, s8, -1 #read left down 1
+addi s9, s9, 1
+addi a0, s8, 0
+addi a1, s9, 0
+call read_dot
+addi s8, s8, 1
+addi s9, s9, -1
+addi a0, s8, 0
+addi a1, s9, 0
+#beq s7, t5, draw_victory
+beq s6, t5, draw1
+addi s8, s8, -1 #globally change coordinate
+draw1:
+addi a0, s8, 0
+addi a1, s9, 0
+li a3, 0xE0
+call draw_square
+j end
+#moves the square down if the check is valid
+move_down:
+addi a0, s8, 0
+addi a1, s9, 0
+li a3, 0xFF
+call draw_square
+check_down_1:
+addi s9, s9, 2 #bottom left
+addi a0, s8, 0
+addi a1, s9, 0
+call read_dot
+addi s9, s9, -2 #reset global pointer
+#beq s7, t5, draw_victory
+beq s6, t5, draw2
+check_down_2:
+addi s9, s9, 2 #check bottom right
+addi s8, s8, 1
+addi a0, s8, 0
+addi a1, s9, 0
+call read_dot
+addi s9, s9, -2 #reset global pointer
+addi s8, s8, -1
+#beq s7, t5, draw_victory
+beq s6, t5, draw2
+addi s9, s9, 1
+draw2:
+addi a1, s9, 0
+addi a0, s8, 0
+li a3, 0xE0
+call draw_square
+j end
+#moves the square right if the check is valid
+move_right:
+addi a0, s8, 0
+addi a1, s9, 0
+li a3, 0xFF
+call draw_square
+check_right1:
+addi s8, s8, 2 #top right
+addi a0, s8, 0
+addi a1, s9, 0
+call read_dot
+addi s8, s8, -2 #reset global pointer
+#beq s7, t5, draw_victory
+beq s6, t5, draw3
+check_right2:
+addi s8, s8, 2 #bottom right
+addi s9, s9, 1
+addi a0, s8, 0
+addi a1, s9, 0
+call read_dot
+addi s8, s8, -2
+addi s9, s9, -1 #reset global pointer
+#beq s7, t5, draw_victory
+beq s6, t5, draw3
+addi s8, s8, 1
+draw3:
+addi a0, s8, 0
+addi a1, s9, 0
+li a3, 0xE0
+call draw_square
+j end
+end: lw ra, 0(sp)
+addi sp,sp,4
+ret
+
+#draws a 2x2 square
+draw_square:
+addi sp,sp,-4
+sw ra, 0(sp)
+addi a2, a0, 1
+mv t2, a0
+mv t3, a1
+mv t5, a2
+call draw_horizontal_line
+mv a0, t2
+addi a1, t3, 1
+mv a2, t5
+call draw_horizontal_line
+lw ra, 0(sp)
+addi sp,sp,4
+ret
+
+# draws a horizontal line from (a0,a1) to (a2,a1) using color in a3
+# Modifies (directly or indirectly): t0, t1, a0, a2
+draw_horizontal_line:
+ addi sp,sp,-4
+ sw ra, 0(sp)
+ addi a2,a2,1 #go from a0 to a2 inclusive
+draw_horiz1:
+ call draw_dot  # must not modify: a0, a1, a2, a3
+ addi a0,a0,1
+ bne a0,a2, draw_horiz1
+ lw ra, 0(sp)
+ addi sp,sp,4
+ ret
+# draws a vertical line from (a0,a1) to (a0,a2) using color in a3
+# Modifies (directly or indirectly): t0, t1, a1, a2
+draw_vertical_line:
+ addi sp,sp,-4
+ sw ra, 0(sp)
+ addi a2,a2,1
+draw_vert1:
+ call draw_dot  # must not modify: a0, a1, a2, a3
+ addi a1,a1,1
+ bne a1,a2,draw_vert1
+ lw ra, 0(sp)
+ addi sp,sp,4
+ ret
+# Fills the 60x80 grid with one color using successive calls to draw_horizontal_line
+# Modifies (directly or indirectly): t0, t1, t4, a0, a1, a2, a3
+draw_background:
+ addi sp,sp,-4
+ sw ra, 0(sp)
+ li a3, BG_COLOR #use default color
+ li a1, 0 #a1= row_counter
+ li t4, 60  #max rows
+start: li a0, 0
+ li a2, 79  #total number of columns
+ call draw_horizontal_line  # must not modify: t4, a1, a3
+ addi a1,a1, 1
+ bne t4,a1, start #branch to draw more rows
+ lw ra, 0(sp)
+ addi sp,sp,4
+ ret
+ 
+
+# draws a dot on the display at the given coordinates:
+#  (X,Y) = (a0,a1) with a color stored in a3
+#  (col, row) = (a0,a1)
+# Modifies (directly or indirectly): t0, t1
+draw_dot:
+ andi t0,a0,0x7F # select bottom 7 bits (col)
+ andi t1,a1,0x3F # select bottom 6 bits  (row)
+ slli t1,t1,7 #  {a1[5:0],a0[6:0]}
+ or t0,t1,t0 # 13-bit address
+ sw t0, 0(s2) # write 13 address bits to register
+ sw a3, 0(s3) # write color data to frame buffer
+ ret
+
+#draws the victory screen:
+draw_victory:
+call draw_background
+li a3, 0x00
+li a0, 7
+li a1, 8
+li a2, 9
+call draw_vertical_line
+li a0, 11
+li a1, 8
+li a2, 9
+call draw_vertical_line
+li a0, 8
+li a1, 10
+li a2, 10
+call draw_horizontal_line
+li a0, 9
+li a1, 10
+li a2, 12
+call draw_vertical_line
+li a0, 14
+li a1, 8
+li a2, 15
+call draw_horizontal_line
+li a0, 13
+li a1, 9
+li a2, 11
+call draw_vertical_line
+li a0, 16
+li a1, 9
+li a2, 11
+call draw_vertical_line
+li a0, 14
+li a1, 12
+li a2, 15
+call draw_horizontal_line
+li a0, 18
+li a1, 8
+li a2, 11
+call draw_vertical_line
+li a0, 21
+li a1, 8
+li a2, 11
+call draw_vertical_line
+li a0, 19
+li a1, 12
+li a2, 20
+call draw_horizontal_line
+li a0, 25
+li a1, 8
+li a2, 12
+call draw_vertical_line
+li a0, 29
+li a1, 8
+li a2, 12
+call draw_vertical_line
+li a0, 26
+li a1, 11
+call draw_dot
+li a0, 27
+li a1, 10
+call draw_dot
+li a0, 28
+li a1, 11
+call draw_dot
+li a0, 31
+li a1, 8
+li a2, 33
+call draw_horizontal_line
+li a0, 32
+li a1, 8
+li a2, 12
+call draw_vertical_line
+li a0, 31
+li a1, 12
+li a2, 33
+call draw_horizontal_line
+li a0, 35
+li a1, 8
+li a2, 12
+call draw_vertical_line
+li a0, 38
+li a1, 8
+li a2, 12
+call draw_vertical_line
+li a0, 36
+li a1, 9
+call draw_dot
+li a0, 37
+li a1, 10
+call draw_dot
+li a0, 41
+li a1, 8
+li a2, 10
+call draw_vertical_line
+li a1, 12
+call draw_dot
+li a0, 44
+call draw_dot
+li a0, 47
+call draw_dot
+li a0, 44
+li a1, 8
+li a2, 10
+call draw_vertical_line
+li a0, 47
+li a1, 8
+li a2, 10
+call draw_vertical_line
+li a0, 55
+li a1, 6
+li a2, 58
+call draw_horizontal_line
+li a0, 55
+li a1, 7
+li a2, 58
+call draw_horizontal_line
+li a0, 59
+li a1, 8
+call draw_square
+li a0, 61
+li a1, 6
+call draw_square
+li a0, 63
+li a1, 6
+call draw_square
+li a0, 65
+li a1, 8
+call draw_square
+li a0, 65
+li a1, 10
+call draw_square
+li a0, 63
+li a1, 12
+call draw_square
+li a0, 61
+li a1, 14
+call draw_square
+li a0, 59
+li a1, 16
+call draw_square
+li a0, 57
+li a1, 14
+call draw_square
+li a0, 55
+li a1, 12
+call draw_square
+li a0, 53
+li a1, 10
+call draw_square
+li a0, 53
+li a1, 8
+call draw_square
+li a0, 8
+li a1, 30
+li a2, 73
+call draw_horizontal_line
+li a0, 8
+li a1, 31
+li a2, 73
+call draw_horizontal_line
+li a0, 4
+li a1, 32
+call draw_square
+li a0, 6
+li a1, 32
+call draw_square
+li a0, 22
+li a1, 32
+call draw_square
+li a0, 24
+li a1, 32
+call draw_square
+li a0, 28
+li a1, 32
+call draw_square
+li a0, 32
+li a1, 32
+li a2, 50
+call draw_horizontal_line
+li a0, 32
+li a1, 33
+li a2, 50
+call draw_horizontal_line
+li a0, 54
+li a1, 32
+call draw_square
+li a0, 58
+li a1, 32
+li a2, 73
+call draw_horizontal_line
+li a0, 58
+li a1, 33
+li a2, 73
+call draw_horizontal_line
+li a0, 24
+li a1, 34
+call draw_square
+li a0, 26
+li a1, 34
+call draw_square
+li a0, 30
+li a1, 34
+call draw_square
+li a0, 34
+li a1, 34
+li a2, 45
+call draw_horizontal_line
+li a0, 34
+li a1, 35
+li a2, 45
+call draw_horizontal_line
+li a0, 50
+li a1, 34
+call draw_square
+li a0, 52
+li a1, 34
+call draw_square
+li a0, 56
+li a1, 34
+call draw_square
+li a0, 60
+li a1, 34
+li a2, 71
+call draw_square
+li a0, 60
+li a1, 35
+li a2, 71
+call draw_square
+li a0, 26
+li a1, 36
+call draw_square
+li a0, 28
+li a1, 36
+call draw_square
+li a0, 32
+li a1, 36
+call draw_square
+li a0, 36
+li a1, 36
+li a2, 43
+call draw_horizontal_line
+li a0, 36
+li a1, 37
+li a2, 43
+call draw_horizontal_line
+li a0, 52
+li a1, 36
+call draw_square
+li a0, 54
+li a1, 36
+call draw_square
+li a0, 58
+li a1, 36
+call draw_square
+li a0, 62
+li a1, 36
+li a2, 69
+call draw_horizontal_line
+li a0, 62
+li a1, 37
+li a2, 69
+call draw_horizontal_line
+li a0, 28
+li a1, 38
+li a2, 41
+call draw_horizontal_line
+li a0, 62
+li a1, 34
+li a2, 71
+call draw_horizontal_line
+li a0, 62
+li a1, 35
+li a2, 71
+call draw_horizontal_line
+li a0, 28
+li a1, 39
+li a2, 41
+call draw_horizontal_line
+li a0, 54
+li a1, 38
+li a2, 67
+call draw_horizontal_line
+li a0, 54
+li a1, 39
+li a2, 67
+call draw_horizontal_line
+li a3, 0xFF
+li a0, 60
+li a1, 36
+
+call draw_square
+li a3, 0xE0
+li a0, 55
+li a1, 8
+li a2, 11
+call draw_vertical_line
+li a0, 56
+li a1, 8
+li a2, 11
+call draw_vertical_line
+li a0, 57
+li a1, 8
+li a2, 13
+call draw_vertical_line
+li a0, 58
+li a1, 8
+li a2, 13
+call draw_vertical_line
+li a0, 59
+li a1, 10
+li a2, 15
+call draw_vertical_line
+li a0, 60
+li a1, 10
+li a2, 15
+call draw_vertical_line
+li a0, 61
+li a1, 8
+li a2, 13
+call draw_vertical_line
+li a0, 62
+li a1, 8
+li a2, 13
+call draw_vertical_line
+li a0, 63
+li a1, 8
+li a2, 11
+call draw_vertical_line
+li a0, 64
+li a1, 8
+li a2, 11
+call draw_vertical_line
+j end
+draw_start:
+call draw_background
+li a3, 0x00
+li a0, 24
+li a1, 23
+li a2, 27
+call draw_vertical_line
+li a0, 24
+li a1, 27
+li a2, 27
+call draw_horizontal_line
+li a0, 29
+li a1, 23
+li a2, 32
+call draw_horizontal_line
+li a0, 29
+li a1, 25
+li a2, 31
+call draw_horizontal_line
+li a0, 29
+li a1, 27
+li a2, 332
+call draw_horizontal_line
+li a0, 29
+li a1, 23
+li a2, 27
+call draw_vertical_line
+li a0, 34
+li a1, 23
+li a2, 24
+call draw_vertical_line
+li a0, 35
+li a1, 25
+li a2, 26
+call draw_vertical_line
+li a0, 36
+li a1, 27
+call draw_dot
+li a0, 37
+li a1, 25
+li a2, 26
+call draw_vertical_line
+li a0, 28
+li a1, 23
+li a2, 24
+call draw_horizontal_line
+li a0, 40
+li a1, 23
+li a2, 43
+call draw_horizontal_line
+li a0, 40
+li a1, 23
+li a2, 27
+call draw_vertical_line
+li a0, 40
+li a1, 25
+li a2, 42
+call draw_horizontal_line
+li a0, 40
+li a1, 27
+li a2, 43
+call draw_horizontal_line
+li a0, 45
+li a1, 23
+li a2, 27
+call draw_vertical_line
+li a0, 45
+li a1, 27
+li a2, 48
+call draw_horizontal_line
+li a0, 52
+li a1, 24
+call draw_dot
+li a0, 53
+li a1, 23
+li a2, 27
+call draw_vertical_line
+li a0, 52
+li a1, 27
+li a2, 54
+call draw_horizontal_line
+li a0, 27
+li a1, 29
+li a2, 29
+call draw_horizontal_line
+li a0, 26
+li a1, 30
+call draw_dot
+li a0, 27
+li a1, 31
+li a2, 28
+call draw_horizontal_line
+li a0, 29
+li a1, 32
+call draw_dot
+li a0, 26
+li a1, 33
+li a2, 28
+call draw_horizontal_line
+li a0, 31
+li a1, 29
+li a2, 35
+call draw_horizontal_line
+li a0, 33
+li a1, 29
+li a2, 33
+call draw_vertical_line
+li a0, 38
+li a1, 29
+li a2, 39
+call draw_horizontal_line
+li a0, 37
+li a1, 30
+li a2, 33
+call draw_vertical_line
+li a0, 37
+li a1, 31
+li a2, 40
+call draw_horizontal_line
+li a0, 40
+li a1, 30
+li a2, 33
+call draw_vertical_line
+li a0, 42
+li a1, 29
+li a2, 33
+call draw_vertical_line
+li a0, 43
+li a1, 29
+li a2, 44
+call draw_horizontal_line
+li a0, 45
+li a1, 30
+call draw_dot
+li a0, 42
+li a1, 31
+li a2, 44
+call draw_horizontal_line
+li a0, 44
+li a1, 32
+call draw_dot
+li a0, 45
+li a1, 33
+call draw_dot
+li a0, 47
+li a1, 29
+li a2, 51
+call draw_horizontal_line
+li a0, 49
+li a1, 29
+li a2, 33
+call draw_vertical_line
+li a0, 54
+li a1, 29
+li a2, 31
+call draw_vertical_line
+li a0, 54
+li a1, 33
+call draw_dot
+j end
